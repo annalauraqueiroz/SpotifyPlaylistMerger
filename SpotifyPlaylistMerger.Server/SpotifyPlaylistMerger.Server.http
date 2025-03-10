@@ -1,0 +1,6 @@
+@SpotifyPlaylistMerger.Server_HostAddress = http://localhost:5098
+
+GET {{SpotifyPlaylistMerger.Server_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
