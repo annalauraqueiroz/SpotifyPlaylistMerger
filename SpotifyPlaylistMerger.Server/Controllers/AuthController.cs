@@ -50,16 +50,13 @@ namespace SpotifyPlaylistMerger.Server.Controllers
                 var byteArray = Encoding.ASCII.GetBytes($"{clientId}:{clientSecret}");
                 var authHeader = Convert.ToBase64String(byteArray);
 
-                // Criação da requisição HTTP
                 var request = new HttpRequestMessage(HttpMethod.Post, tokenUrl)
                 {
                     Content = content
                 };
 
-                // Configura o cabeçalho de Autorização
                 request.Headers.Authorization = new AuthenticationHeaderValue("Basic", authHeader);
 
-                // Usando o HttpClient para enviar a requisição
                 using (var client = new HttpClient())
                 {
                     var response = await client.SendAsync(request);
@@ -73,7 +70,6 @@ namespace SpotifyPlaylistMerger.Server.Controllers
                         var accessToken = tokenData["access_token"];
                         var refreshToken = tokenData.ContainsKey("refresh_token") ? tokenData["refresh_token"] : null;
 
-                        // Retorne o token de acesso para o frontend ou salve no banco de dados
                         return Ok(new { access_token = accessToken.ToString(), refresh_token = refreshToken.ToString() });
                     }
                     else

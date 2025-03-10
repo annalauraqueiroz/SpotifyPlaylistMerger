@@ -43,7 +43,7 @@ namespace SpotifyPlaylistMerger.Server.Controllers
 
             _httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", Authorization.Replace("Bearer ", ""));
 
-            // Simulação da fusão de playlists (para mesclar na real, seria necessário criar uma nova e copiar as músicas)
+            // Simulação 
             var mergedPlaylist = new { message = "Playlists mescladas com sucesso!", playlists = request.Playlists };
             return Ok(mergedPlaylist);
         }
