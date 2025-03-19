@@ -1,5 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SpotifyPlaylistMerger.Server.Model;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace SpotifyPlaylistMerger.Server.Controllers
 {
@@ -13,6 +17,8 @@ namespace SpotifyPlaylistMerger.Server.Controllers
         {
             _httpClient = new HttpClient();
         }
+        private Playlist PlaylistHelper => new Playlist(_httpClient);
+
 
         [HttpGet("playlists")]
         public async Task<IActionResult> GetUserPlaylists([FromHeader] string Authorization)
@@ -43,9 +49,14 @@ namespace SpotifyPlaylistMerger.Server.Controllers
 
             _httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", Authorization.Replace("Bearer ", ""));
 
-            // Simulação 
-            var mergedPlaylist = new { message = "Playlists mescladas com sucesso!", playlists = request.Playlists };
-            return Ok(mergedPlaylist);
+            //Cria a nova playlist
+            var playlistInfo = new PlaylistModel() { name = "Nova Playlist Mesclada", description = "Playlist gerada a partir do seu app!" };
+            var newPlaylist = await PlaylistHelper.CreatePlaylist(playlistInfo);
+
+            //Obtem e adiciona as novas músicas a playlist
+            await PlaylistHelper.AddItemsFromPlaylists(newPlaylist, request.Playlists);
+
+            return Ok(newPlaylist);
         }
     }
 

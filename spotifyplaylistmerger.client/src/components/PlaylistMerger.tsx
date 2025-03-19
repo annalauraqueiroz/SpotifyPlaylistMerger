@@ -8,7 +8,7 @@ const PlaylistMerger = ({ token, selectedPlaylists }) => {
             return;
         }
         const result = await mergePlaylists(token, selectedPlaylists);
-        alert(`Playlist criada: ${result.newPlaylistName}`);
+        alert(`Playlist criada: ${result.name}`);
     };
 
     return (
