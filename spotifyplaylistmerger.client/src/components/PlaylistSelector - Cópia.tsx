@@ -1,23 +1,27 @@
-﻿import React, { useEffect, useState } from "react";
-import { getUserPlaylists } from "../api";
+import React, { useState, useEffect } from 'react';
 import { Music2, Sparkles, Shuffle } from 'lucide-react';
 import { Button } from './ui/button';
 import PlaylistCard from './PlaylistCard';
 import MergePreloader from './MergePreloader';
+
 interface Playlist {
     id: string;
     name: string;
     image?: string;
 }
+
 interface PlaylistSelectorProps {
     token: string;
     selectedPlaylists: string[];
     onSelectionChange: (playlists: string[]) => void;
+    getUserPlaylists: (token: string) => Promise<Playlist[]>;
 }
+
 const PlaylistSelector: React.FC<PlaylistSelectorProps> = ({
     token,
-    selectedPlaylists = [],
-    onSelectionChange
+    selectedPlaylists,
+    onSelectionChange,
+    getUserPlaylists
 }) => {
     const [playlists, setPlaylists] = useState<Playlist[]>([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -42,7 +46,6 @@ const PlaylistSelector: React.FC<PlaylistSelectorProps> = ({
         }
     }, [token, getUserPlaylists]);
 
-
     const handleTogglePlaylist = (playlistId: string) => {
         const updatedSelection = selectedPlaylists.includes(playlistId)
             ? selectedPlaylists.filter((id) => id !== playlistId)
@@ -65,7 +68,7 @@ const PlaylistSelector: React.FC<PlaylistSelectorProps> = ({
                     setTimeout(() => {
                         setIsMerging(false);
                         setMergeProgress(0);
-                        console.log('Merge concluído para as playlists:', selectedPlaylists);
+                        console.log('Merge conclu�do para as playlists:', selectedPlaylists);
                     }, 500);
                     return 100;
                 }
@@ -87,27 +90,6 @@ const PlaylistSelector: React.FC<PlaylistSelectorProps> = ({
         );
     }
 
-    //return (
-    //    <div>
-    //        <h2>Selecione as Playlists</h2>
-    //        {playlists && playlists.length > 0 ? (
-    //            playlists.map((playlist) => (
-    //                <label key={playlist.id}>
-    //                    <input
-    //                        type="checkbox"
-    //                        value={playlist.id}
-
-    //                        onChange={() => handleChange(playlist.id)}
-    //                    />
-    //                    {playlist.name}
-    //                </label>
-    //            ))
-    //        ) : (
-    //            <p>Não há playlists disponíveis.</p> // Mensagem caso não existam playlists
-    //        )}
-
-    //    </div>
-    //);
     return (
         <>
             <div className="min-h-screen bg-gradient-to-br from-purple-400 via-pink-500 to-red-500 p-6">
@@ -122,13 +104,13 @@ const PlaylistSelector: React.FC<PlaylistSelectorProps> = ({
                             <Sparkles className="text-yellow-300 animate-bounce-gentle" size={32} />
                         </div>
                         <p className="text-white/80 text-lg md:text-xl max-w-2xl mx-auto">
-                            Selecione as playlists que você quer sincronizar.
-                            Toque nos cards para adicionar ou remover da seleção! 🎵
+                            Selecione as playlists que voc� quer sincronizar.
+                            Toque nos cards para adicionar ou remover da sele��o! ??
                         </p>
                     </div>
 
-                    {/* Contador de selecionados e botão de merge */}
-                    {selectedPlaylists && selectedPlaylists.length > 0 && (
+                    {/* Contador de selecionados e bot�o de merge */}
+                    {selectedPlaylists.length > 0 && (
                         <div className="text-center mb-6 space-y-4">
                             <div className="inline-block bg-white/20 backdrop-blur-sm rounded-full px-6 py-2">
                                 <span className="text-white font-medium">
@@ -172,8 +154,8 @@ const PlaylistSelector: React.FC<PlaylistSelectorProps> = ({
                                     Nenhuma playlist encontrada
                                 </h3>
                                 <p className="text-white/70">
-                                    Parece que você ainda não tem playlists criadas.
-                                    Que tal criar algumas primeiro? 🎶
+                                    Parece que voc� ainda n�o tem playlists criadas.
+                                    Que tal criar algumas primeiro? ??
                                 </p>
                             </div>
                         </div>

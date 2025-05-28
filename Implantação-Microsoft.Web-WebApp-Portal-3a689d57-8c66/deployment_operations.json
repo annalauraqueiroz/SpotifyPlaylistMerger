@@ -1,0 +1,36 @@
+[
+  {
+    "id": "/subscriptions/285542e8-5013-4ce1-a4dc-c3048b784f2b/resourceGroups/SpotifyMergerPlaylist-api_group/providers/Microsoft.Resources/deployments/Microsoft.Web-WebApp-Portal-3a689d57-8c66/operations/2FE231CA4E6516EB",
+    "operationId": "2FE231CA4E6516EB",
+    "properties": {
+      "provisioningOperation": "Create",
+      "provisioningState": "Succeeded",
+      "timestamp": "2025-03-19T01:58:03.9799594Z",
+      "duration": "PT3.5251099S",
+      "trackingId": "4b5dc17e-d3a4-49af-98ac-d5c65d6d858c",
+      "statusCode": "OK",
+      "targetResource": {
+        "id": "/subscriptions/285542e8-5013-4ce1-a4dc-c3048b784f2b/resourceGroups/SpotifyMergerPlaylist-api_group/providers/Microsoft.Web/serverfarms/ASP-SpotifyMergerPlaylistapigroup-ab5f",
+        "resourceType": "Microsoft.Web/serverfarms",
+        "resourceName": "ASP-SpotifyMergerPlaylistapigroup-ab5f"
+      }
+    }
+  },
+  {
+    "id": "/subscriptions/285542e8-5013-4ce1-a4dc-c3048b784f2b/resourceGroups/SpotifyMergerPlaylist-api_group/providers/Microsoft.Resources/deployments/Microsoft.Web-WebApp-Portal-3a689d57-8c66/operations/8A3578F3BECA106C",
+    "operationId": "8A3578F3BECA106C",
+    "properties": {
+      "provisioningOperation": "Create",
+      "provisioningState": "Running",
+      "timestamp": "2025-03-19T01:58:02.8017017Z",
+      "duration": "PT2.3468522S",
+      "trackingId": "815baa78-3888-425e-968c-b34b8154ff96",
+      "statusCode": "Created",
+      "targetResource": {
+        "id": "/subscriptions/285542e8-5013-4ce1-a4dc-c3048b784f2b/resourceGroups/DefaultResourceGroup-CQ/providers/Microsoft.Resources/deployments/newWorkspaceTemplate",
+        "resourceType": "Microsoft.Resources/deployments",
+        "resourceName": "newWorkspaceTemplate"
+      }
+    }
+  }
+]
