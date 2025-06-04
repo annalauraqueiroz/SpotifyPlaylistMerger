@@ -9,6 +9,7 @@ interface Playlist {
     name: string;
     image?: string;
 }
+
 interface PlaylistSelectorProps {
     token: string;
     selectedPlaylists: string[];
@@ -76,7 +77,7 @@ const PlaylistSelector: React.FC<PlaylistSelectorProps> = ({
 
     if (isLoading) {
         return (
-            <div className="min-h-screen bg-gradient-to-br from-purple-400 via-pink-500 to-red-500 flex items-center justify-center">
+            <div className="min-h-screen bg-gradient-to-br from-stone-200 via-stone-400 to-stone-600 flex items-center justify-center">
                 <div className="text-center">
                     <div className="animate-wiggle mb-4">
                         <Music2 size={48} className="text-white mx-auto" />
